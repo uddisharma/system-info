@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const si = require("systeminformation");
+const axios = require("axios");
 const app = express();
 app.use(
   cors({
@@ -24,10 +25,10 @@ app.get("/get-ip", (req, res) => {
   axios
     .get("https://surfshark.com/api/v1/server/user")
     .then((resp) => {
-      res.send(resp.data);
+      res.json({ data: resp.data, msg: "Data fetched" });
     })
     .catch((err) => {
-      re.send(err);
+      res.json({ msg: "Something went wrong", err: err });
     });
 });
 app.listen(4000, () => {
