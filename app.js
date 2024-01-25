@@ -20,6 +20,16 @@ app.get("/", async (req, res) => {
     res.send(error);
   }
 });
+app.get("/get-ip", (req, res) => {
+  axios
+    .get("https://surfshark.com/api/v1/server/user")
+    .then((resp) => {
+      res.send(resp.data);
+    })
+    .catch((err) => {
+      re.send(err);
+    });
+});
 app.listen(4000, () => {
   console.log("running");
 });
